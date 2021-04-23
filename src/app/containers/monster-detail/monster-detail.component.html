@@ -1,10 +1,10 @@
-<div *ngIf="monster">
+<div *ngIf="monster$ | async as monster">
   <h2>{{monster.name | uppercase}} Details</h2>
   <div><span>id: </span>{{monster.id}}</div>
   <div>
     <label for="monster-name">Monster name: </label>
-    <input id="monster-name" [(ngModel)]="monster.name" placeholder="Monster name"/>
+    <input id="monster-name" [formControl]="formControl" placeholder="Monster name"/>
   </div>
   <button (click)="goBack()">go back</button>
-  <button (click)="save()">save</button>
+  <button (click)="save(monster)">save</button>
 </div>
