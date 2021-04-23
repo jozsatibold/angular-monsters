@@ -1,0 +1,84 @@
+{
+  "monsters": [
+    {
+      "id": 11,
+      "name": "Dr Nice",
+      "bodyIndex": 0,
+      "height": 0,
+      "popularity": 0,
+      "weight": 0
+    },
+    {
+      "id": 12,
+      "name": "Narco",
+      "bodyIndex": 0,
+      "height": 0,
+      "popularity": 0,
+      "weight": 0
+    },
+    {
+      "id": 13,
+      "name": "Bombasto",
+      "bodyIndex": 0,
+      "height": 0,
+      "popularity": 0,
+      "weight": 0
+    },
+    {
+      "id": 14,
+      "name": "Celeritas",
+      "bodyIndex": 0,
+      "height": 0,
+      "popularity": 0,
+      "weight": 0
+    },
+    {
+      "id": 15,
+      "name": "Magneta",
+      "bodyIndex": 0,
+      "height": 0,
+      "popularity": 0,
+      "weight": 0
+    },
+    {
+      "id": 16,
+      "name": "RubberMan",
+      "bodyIndex": 0,
+      "height": 0,
+      "popularity": 0,
+      "weight": 0
+    },
+    {
+      "id": 17,
+      "name": "Dynama",
+      "bodyIndex": 0,
+      "height": 0,
+      "popularity": 0,
+      "weight": 0
+    },
+    {
+      "id": 18,
+      "name": "Dr IQ",
+      "bodyIndex": 0,
+      "height": 0,
+      "popularity": 0,
+      "weight": 0
+    },
+    {
+      "id": 19,
+      "name": "Magma",
+      "bodyIndex": 0,
+      "height": 0,
+      "popularity": 0,
+      "weight": 0
+    },
+    {
+      "id": 20,
+      "name": "Tornado",
+      "bodyIndex": 0,
+      "height": 0,
+      "popularity": 0,
+      "weight": 0
+    }
+  ]
+}
