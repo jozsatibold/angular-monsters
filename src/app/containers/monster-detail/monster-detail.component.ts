@@ -6,7 +6,7 @@ import { Monster } from '../../models/monster';
 import { MonsterService } from '../../services/monster.service';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
 import { Subscription, Subject, Observable } from 'rxjs';
-import { FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-monster-detail',
@@ -15,16 +15,25 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class MonsterDetailComponent implements OnInit, OnDestroy {
   monster$: Observable<Monster>;
-  formControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  form: FormGroup;
+
 
   constructor(
     private route: ActivatedRoute,
     private monsterService: MonsterService,
-    private location: Location
+    private location: Location,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.getMonster();
+    
+    this.form = this.fb.group({
+        id: [{value: '', disabled: true}],
+        name: ['', [Validators.required, Validators.minLength(3)]],
+        weight: ['', [Validators.required, Validators.min(20), Validators.max(6000)]],
+        height: ['', [Validators.required, Validators.min(0.7), Validators.max(20)]]
+    });
   }
   
   ngOnDestroy(): void {
@@ -34,7 +43,12 @@ export class MonsterDetailComponent implements OnInit, OnDestroy {
     this.monster$ = this.route.params
         .pipe(
             switchMap( params => this.monsterService.getMonster(+params.id) ), 
-            tap(monster => this.formControl.setValue(monster.name))
+            tap(monster => this.form.setValue({
+                id: monster.id, 
+                name: monster.name,
+                weight: monster.weight,
+                height: monster.height
+            })),
         );
   }
 
@@ -42,8 +56,13 @@ export class MonsterDetailComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  save(monster): void {
-    this.monsterService.updateMonster(monster)
-      .subscribe(() => this.goBack());
+  save(): void {
+    if(this.form.valid){
+        const formValue = this.form.getRawValue();
+        const bodyIndex = formValue.weight / Math.pow(formValue.height, 2);
+        
+        this.monsterService.updateMonster({...formValue, bodyIndex})
+          .subscribe(() => this.goBack());
+    }
   }
 }

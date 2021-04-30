@@ -73,7 +73,7 @@ export class MonsterService {
 
   /** PUT: update the monster on the server */
   updateMonster(monster: Monster): Observable<any> {
-    return this.http.put(this.monstersUrl, monster, this.httpOptions).pipe(
+    return this.http.put(`${this.monstersUrl}/${monster.id}`, monster, this.httpOptions).pipe(
       tap(_ => this.log(`updated monster id=${monster.id}`)),
       catchError(this.handleError<any>('updateMonster'))
     );

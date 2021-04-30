@@ -11,9 +11,9 @@
 </div>
 
 <ul class="monsters">
-  <li *ngFor="let monster of monsters">
+  <li *ngFor="let monster of monsters$ | async">
     <a routerLink="/detail/{{monster.id}}">
-      <span class="badge">{{monster.id}}</span> {{monster.name}}
+      <span class="badge"><img src="https://robohash.org/{{monster.id}}?set=set2&size=30x30"></span> {{monster.name}}
     </a>
     <button class="delete" title="delete monster"
       (click)="delete(monster)">x</button>

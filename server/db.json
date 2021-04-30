@@ -10,11 +10,10 @@
     },
     {
       "id": 12,
-      "name": "Narco",
-      "bodyIndex": 0,
-      "height": 0,
-      "popularity": 0,
-      "weight": 0
+      "name": "Narco2",
+      "weight": "22",
+      "height": "0.7",
+      "bodyIndex": 44.89795918367348
     },
     {
       "id": 13,
@@ -27,14 +26,6 @@
     {
       "id": 14,
       "name": "Celeritas",
-      "bodyIndex": 0,
-      "height": 0,
-      "popularity": 0,
-      "weight": 0
-    },
-    {
-      "id": 15,
-      "name": "Magneta",
       "bodyIndex": 0,
       "height": 0,
       "popularity": 0,

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { Monster } from '../../models/monster';
 import { MonsterService } from '../../services/monster.service';
@@ -10,6 +12,8 @@ import { MonsterService } from '../../services/monster.service';
 })
 export class MonstersComponent implements OnInit {
   monsters: Monster[];
+  monsters$: Observable<Monster[]>;
+  refresh$ = new BehaviorSubject(null);
 
   constructor(private monsterService: MonsterService) { }
 
@@ -18,8 +22,10 @@ export class MonstersComponent implements OnInit {
   }
 
   getMonsters(): void {
-    this.monsterService.getMonsters()
-    .subscribe(monsters => this.monsters = monsters);
+    this.monsters$ = this.refresh$
+        .pipe(
+            switchMap(() => this.monsterService.getMonsters())
+        );
   }
 
   add(name: string): void {
@@ -27,13 +33,14 @@ export class MonstersComponent implements OnInit {
     if (!name) { return; }
     this.monsterService.addMonster({ name, bodyIndex: 0, weight: 0, popularity: 0, height: 0 } as Monster)
       .subscribe(monster => {
-        this.monsters.push(monster);
+        this.refresh$.next(true);
       });
   }
 
   delete(monster: Monster): void {
-    this.monsters = this.monsters.filter(h => h !== monster);
-    this.monsterService.deleteMonster(monster.id).subscribe();
+    this.monsterService.deleteMonster(monster.id).subscribe(
+        () => this.refresh$.next(true)
+    );
   }
 
 }
