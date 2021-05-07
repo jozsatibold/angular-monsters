@@ -28,19 +28,9 @@ export class MonstersComponent implements OnInit {
         );
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.monsterService.addMonster({ name, bodyIndex: 0, weight: 0, popularity: 0, height: 0 } as Monster)
-      .subscribe(monster => {
-        this.refresh$.next(true);
-      });
-  }
-
   delete(monster: Monster): void {
     this.monsterService.deleteMonster(monster.id).subscribe(
         () => this.refresh$.next(true)
     );
   }
-
 }

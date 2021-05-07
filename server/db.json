@@ -70,6 +70,12 @@
       "height": 0,
       "popularity": 0,
       "weight": 0
+    },
+    {
+      "name": "Pikacsú",
+      "weight": "78",
+      "height": "20",
+      "id": 21
     }
   ]
 }

@@ -1,0 +1,25 @@
+<h2>Add monster</h2>
+<div>
+  <form [formGroup]="form" (ngSubmit)="saveMonster()">
+      
+      <div>
+        <label for="monster-name">Monster name: </label>
+        <input id="monster-name" formControlName="name" placeholder="Monster name"/>
+      </div>
+      
+      <div>
+        <label for="monster-weight">Monster weight: </label>
+        <input id="monster-weight" formControlName="weight" placeholder="Monster weight"/>
+      </div>
+      
+      <div>
+        <label for="monster-height">Monster height: </label>
+        <input id="monster-height" formControlName="height" placeholder="Monster height"/>
+      </div>
+      
+      <div *ngIf="index$ | async as index">{{index.bodyIndex | number: '1.2-2'}} - {{index.weightStatus}}</div>
+      
+      <button type="submit">save</button>
+  </form>
+  <button routerLink="/monsters">go back</button>
+</div>

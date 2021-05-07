@@ -1,18 +1,14 @@
 <h2>My Monsters</h2>
 
 <div>
-  <label id="new-monster">Monster name: </label>
-  <input for="new-monster" #monsterName placeholder="Monster name"/>
-
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button class="add-button" (click)="add(monsterName.value); monsterName.value=''">
+  <button routerLink="/add-monster">
     Add monster
   </button>
 </div>
 
 <ul class="monsters">
   <li *ngFor="let monster of monsters$ | async">
-    <a routerLink="/detail/{{monster.id}}">
+    <a routerLink="/monster/{{monster.id}}">
       <span class="badge"><img src="https://robohash.org/{{monster.id}}?set=set2&size=30x30"></span> {{monster.name}}
     </a>
     <button class="delete" title="delete monster"
