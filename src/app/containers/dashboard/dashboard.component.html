@@ -1,6 +1,6 @@
 <h2>Top Monsters</h2>
 <div class="monster-menu">
-  <a *ngFor="let monster of monsters"
+  <a *ngFor="let monster of monsters$ | async"
       routerLink="/monster/{{monster.id}}">
       {{monster.name}}
   </a>

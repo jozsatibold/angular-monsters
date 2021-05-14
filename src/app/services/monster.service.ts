@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 
 import { Monster } from '../models/monster';
 
@@ -10,7 +10,7 @@ import { Monster } from '../models/monster';
 @Injectable({ providedIn: 'root' })
 export class MonsterService {
 
-  private monstersUrl = ' http://localhost:3000/monsters';  // URL to web api
+  private monstersUrl = '/monsters';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,8 +20,15 @@ export class MonsterService {
     private http: HttpClient) { }
 
   /** GET monsters from the server */
-  getMonsters(): Observable<Monster[]> {
-    return this.http.get<Monster[]>(this.monstersUrl)
+  getMonsters(sort?: string, order?: 'asc' | 'desc', page?: number, limit?: number): Observable<Monster[]> {
+    return this.http.get<Monster[]>(this.monstersUrl, 
+        {
+            params: {_sort: sort, 
+                _order: order,
+                _page: `${page}`,
+                _limit: `${limit}`
+                }
+        })
       .pipe(
         tap(_ => this.log('fetched monsters')),
         catchError(this.handleError<Monster[]>('getMonsters', []))
@@ -32,6 +39,7 @@ export class MonsterService {
   getMonster(id: number): Observable<Monster> {
     const url = `${this.monstersUrl}/${id}`;
     return this.http.get<Monster>(url).pipe(
+      switchMap(monster => this.updatePopularity(monster.id, +monster.popularity + 1)),
       tap(_ => this.log(`fetched monster id=${id}`)),
       catchError(this.handleError<Monster>(`getMonster id=${id}`))
     );
@@ -43,7 +51,7 @@ export class MonsterService {
       // if not search term, return empty monster array.
       return of([]);
     }
-    return this.http.get<Monster[]>(`${this.monstersUrl}/?name=${term}`).pipe(
+    return this.http.get<Monster[]>(`${this.monstersUrl}?q=${term}`).pipe(
       tap(x => x.length ?
          this.log(`found monsters matching "${term}"`) :
          this.log(`no monsters matching "${term}"`)),
@@ -78,7 +86,11 @@ export class MonsterService {
       catchError(this.handleError<any>('updateMonster'))
     );
   }
-
+  
+  updatePopularity(id: number, popularity: number): Observable<Monster> {
+    return this.http.patch<Monster>(`${this.monstersUrl}/${id}`, {popularity});
+  }
+  
   /**
    * Handle Http operation that failed.
    * Let the app continue.

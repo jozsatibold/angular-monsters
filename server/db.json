@@ -5,7 +5,7 @@
       "name": "Dr Nice",
       "bodyIndex": 0,
       "height": 0,
-      "popularity": 0,
+      "popularity": 2,
       "weight": 0
     },
     {
@@ -13,7 +13,8 @@
       "name": "Narco2",
       "weight": "22",
       "height": "0.7",
-      "bodyIndex": 44.89795918367348
+      "bodyIndex": 44.89795918367348,
+      "popularity": 1
     },
     {
       "id": 13,
@@ -68,14 +69,23 @@
       "name": "Tornado",
       "bodyIndex": 0,
       "height": 0,
-      "popularity": 0,
+      "popularity": 10,
       "weight": 0
     },
     {
       "name": "Pikacsú",
       "weight": "78",
       "height": "20",
+      "popularity": 3,
       "id": 21
+    },
+    {
+      "name": "Sanya",
+      "weight": "40",
+      "height": "3",
+      "bodyIndex": 4.444444444444445,
+      "popularity": 0,
+      "id": 22
     }
   ]
 }

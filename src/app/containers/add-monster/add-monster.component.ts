@@ -57,7 +57,9 @@ export class AddMonsterComponent implements OnInit {
     saveMonster(){
         if(this.form.valid){
             const formValue = this.form.value;
-            this.monsterService.addMonster(formValue)
+            const bodyIndex = formValue.weight / Math.pow(formValue.height, 2);
+            
+            this.monsterService.addMonster({ ...formValue, bodyIndex, popularity: 0 })
                 .subscribe(() => this.router.navigate(['monsters']) );
         }
         

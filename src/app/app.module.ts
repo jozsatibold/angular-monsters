@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -11,6 +11,7 @@ import { MonsterDetailComponent } from './containers/monster-detail/monster-deta
 import { MonstersComponent } from './containers/monsters/monsters.component';
 import { MonsterSearchComponent } from './containers/monster-search/monster-search.component';
 import { AddMonsterComponent } from './containers/add-monster/add-monster.component';
+import { UrlInterceptor } from './interceptors/url.interceptor';
 
 @NgModule({
   imports: [
@@ -28,6 +29,9 @@ import { AddMonsterComponent } from './containers/add-monster/add-monster.compon
     MonsterSearchComponent,
     AddMonsterComponent
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true }
+  ]
 })
 export class AppModule { }

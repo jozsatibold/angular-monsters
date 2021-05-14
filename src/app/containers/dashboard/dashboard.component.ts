@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Monster } from '../../models/monster';
 import { MonsterService } from '../../services/monster.service';
 
@@ -8,7 +10,7 @@ import { MonsterService } from '../../services/monster.service';
   styleUrls: [ './dashboard.component.css' ]
 })
 export class DashboardComponent implements OnInit {
-  monsters: Monster[] = [];
+  monsters$: Observable<Monster[]>;
 
   constructor(private monsterService: MonsterService) { }
 
@@ -17,7 +19,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getMonsters(): void {
-    this.monsterService.getMonsters()
-      .subscribe(monsters => this.monsters = monsters.slice(1, 5));
+      this.monsters$ = this.monsterService.getMonsters('popularity', 'desc', 1, 4);
   }
 }
