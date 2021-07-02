@@ -1,0 +1,6 @@
+<h2>Top Robots</h2>
+<app-dashboard [items]="robots$ | async" route="robot"></app-dashboard>
+<app-search
+  searchName="Robot"
+  [baseService]="robotService"
+></app-search>

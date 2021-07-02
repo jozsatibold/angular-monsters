@@ -1,0 +1,12 @@
+<div id="search-component">
+  <label for="search-box">{{ searchName }} Search</label>
+  <input #searchBox id="search-box" [formControl]="searchControl" placeholder="{{ searchName }} name search"/>
+
+  <ul class="search-result">
+    <li *ngFor="let item of items$ | async" >
+      <a routerLink="/{{ searchName | lowercase }}/{{item.id}}">
+        {{item.name}}
+      </a>
+    </li>
+  </ul>
+</div>

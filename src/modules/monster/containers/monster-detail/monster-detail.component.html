@@ -1,0 +1,27 @@
+<div *ngIf="monster$ | async as monster">
+  <h2>{{monster.name | uppercase}} Details</h2>
+  <div><span>BMI: </span>{{monster.bodyIndex | number: '1.2-2'}}</div>
+  <div><span>id: </span>{{monster.id}}</div>
+  <img src="https://robohash.org/{{monster.id}}?set=set2&size=180x180">
+  <form [formGroup]="form">
+      
+      <div>
+        <label for="monster-name">Monster name: </label>
+        <input id="monster-name" formControlName="name" placeholder="Monster name"/>
+      </div>
+      
+      <div>
+        <label for="monster-weight">Monster weight: </label>
+        <input id="monster-weight" formControlName="weight" placeholder="Monster weight"/>
+      </div>
+      
+      <div>
+        <label for="monster-height">Monster height: </label>
+        <input id="monster-height" formControlName="height" placeholder="Monster height"/>
+      </div>
+      
+  </form>
+  
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
+</div>

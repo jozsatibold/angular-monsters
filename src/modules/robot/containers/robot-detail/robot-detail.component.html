@@ -1,0 +1,31 @@
+<div *ngIf="robot$ | async as robot">
+  <h2>{{robot.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{robot.id}}</div>
+  <img src="https://robohash.org/{{robot.id}}?set=set3&size=180x180">
+  <form [formGroup]="form">
+
+      <div>
+        <label for="robot-name">Robot name: </label>
+        <input id="robot-name" formControlName="name" placeholder="Robot name"/>
+      </div>
+
+      <div>
+        <label for="robot-weight">Robot weight: </label>
+        <input id="robot-weight" formControlName="weight" placeholder="Robot weight"/>
+      </div>
+
+      <div>
+        <label for="robot-height">Robot height: </label>
+        <input id="robot-height" formControlName="height" placeholder="Robot height"/>
+      </div>
+
+      <div>
+        <label for="robot-efficiency">Robot efficiency: </label>
+        <input id="robot-efficiency" formControlName="efficiency" placeholder="Robot efficiency"/>
+      </div>
+
+  </form>
+
+  <button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>
+</div>

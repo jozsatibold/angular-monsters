@@ -1,0 +1,6 @@
+<h2>Top Monsters</h2>
+<app-dashboard [items]="monsters$ | async" route="monster"></app-dashboard>
+<app-search
+  searchName="Monster"
+  [baseService]="monsterService"
+></app-search>

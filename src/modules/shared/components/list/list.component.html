@@ -1,0 +1,17 @@
+<h2>My {{ pageName | titlecase }}</h2>
+
+<div>
+  <button routerLink="/{{ pageName }}/add">
+    Add {{ pageName }}
+  </button>
+</div>
+
+<ul class="list">
+  <li *ngFor="let item of items$ | async">
+    <a routerLink="/{{ pageName }}/{{item.id}}">
+      <span class="badge"><img src="https://robohash.org/{{item.id}}?set=set{{ setNumber }}&size=30x30"></span> {{item.name}}
+    </a>
+    <button class="delete" title="delete {{ pageName }}"
+            (click)="delete(item)">x</button>
+  </li>
+</ul>

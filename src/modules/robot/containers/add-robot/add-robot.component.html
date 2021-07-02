@@ -1,0 +1,27 @@
+<h2>Add robot</h2>
+<div>
+  <form [formGroup]="form" (ngSubmit)="saveRobot()">
+
+      <div>
+        <label for="robot-name">Robot name: </label>
+        <input id="robot-name" formControlName="name" placeholder="Robot name"/>
+      </div>
+
+      <div>
+        <label for="robot-weight">Robot weight: </label>
+        <input id="robot-weight" formControlName="weight" placeholder="Robot weight"/>
+      </div>
+
+      <div>
+        <label for="robot-height">Robot height: </label>
+        <input id="robot-height" formControlName="height" placeholder="Robot height"/>
+      </div>
+
+      <div>
+        <label for="robot-efficiency">Robot efficiency: </label>
+        <input id="robot-efficiency" formControlName="efficiency" placeholder="Robot efficiency"/>
+      </div>
+      <button type="submit">save</button>
+  </form>
+  <button routerLink="/robot">go back</button>
+</div>
