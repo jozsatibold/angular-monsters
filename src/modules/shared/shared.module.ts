@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import { SearchComponent } from './components/search/search.component';
 import { ListComponent } from './components/list/list.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   exports: [
@@ -15,7 +17,8 @@ import { ListComponent } from './components/list/list.component';
     HttpClientModule,
     DashboardComponent,
     SearchComponent,
-    ListComponent
+    ListComponent,
+    TranslateModule
   ],
   declarations: [
     DashboardComponent,
@@ -26,7 +29,18 @@ import { ListComponent } from './components/list/list.component';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ]
 })
 export class SharedModule { }
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

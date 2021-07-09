@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RobotService} from '../../../global/services/robot.service';
+import {RobotSandbox} from '../../../global/sandboxes/robot.sandbox';
 
 @Component({
   selector: 'app-robot',
@@ -7,5 +7,5 @@ import {RobotService} from '../../../global/services/robot.service';
   styleUrls: ['./robots.component.css']
 })
 export class RobotsComponent {
-  constructor(public robotService: RobotService) { }
+  constructor(public robotSandbox: RobotSandbox) { }
 }

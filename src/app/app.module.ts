@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UrlInterceptor } from './interceptors/url.interceptor';
 import {SharedModule} from '../modules/shared/shared.module';
+import {GlobalModule} from '../modules/global/global.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    GlobalModule
   ],
   declarations: [
     AppComponent

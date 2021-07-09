@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MonsterService} from '../../../global/services/monster.service';
+import {MonsterSandbox} from '../../../global/sandboxes/monster.sandbox';
 
 @Component({
   selector: 'app-monsters',
@@ -7,5 +7,5 @@ import {MonsterService} from '../../../global/services/monster.service';
   styleUrls: ['./monsters.component.css']
 })
 export class MonstersComponent {
-  constructor(public monsterService: MonsterService) { }
+  constructor(public monsterSandbox: MonsterSandbox) { }
 }
