@@ -7,5 +7,7 @@ export abstract class GlobalSandbox<T> {
   delete(id: number){
     return of(null);
   }
+
+  abstract refreshItems(): void;
 }
 

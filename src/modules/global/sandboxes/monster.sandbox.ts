@@ -10,8 +10,19 @@ import {MonsterService} from '../services/monster.service';
 
 @Injectable({providedIn: 'root'})
 export class MonsterSandbox extends GlobalSandbox<Monster> {
-  constructor(private store: Store) {
+  constructor(private store: Store,
+              private monsterService: MonsterService) {
     super();
+  }
+
+  delete(id: number): Observable<Monster> {
+    return this.monsterService.delete(id).pipe(
+      tap(() => this.refreshItems())
+    );
+  }
+
+  refreshItems() {
+    this.store.dispatch(refreshMonsters());
   }
 
   getItems(): Observable<Monster[]>{

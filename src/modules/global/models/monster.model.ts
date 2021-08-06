@@ -1,5 +1,9 @@
 import {BaseDetails} from './base.model';
 
-export interface Monster extends BaseDetails {
+export class Monster extends BaseDetails {
   bodyIndex: number;
+
+  getPower(): number {
+    return this.bodyIndex * this.height * this.xp;
+  }
 }

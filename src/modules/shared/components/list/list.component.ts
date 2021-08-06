@@ -15,7 +15,6 @@ export class ListComponent implements OnInit {
   @Input() globalSandbox: GlobalSandbox<BaseDetails>;
   @Input() editable =  true;
   items$: Observable<BaseDetails[]>;
-  refresh$ = new BehaviorSubject(null);
 
   constructor() { }
 
@@ -24,16 +23,10 @@ export class ListComponent implements OnInit {
   }
 
   getItems(): void {
-    this.items$ = this.refresh$
-      .pipe(
-        switchMap(() => this.globalSandbox.getItems())
-      );
+    this.items$ = this.globalSandbox.getItems();
   }
 
   delete(item: BaseDetails): void {
-    this.globalSandbox.delete(item.id).subscribe(
-      () => this.refresh$.next(true)
-    );
+    this.globalSandbox.delete(item.id).subscribe();
   }
-
 }
