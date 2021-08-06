@@ -1,11 +1,12 @@
 import {Store} from '@ngrx/store';
 import {globalSelectors} from '../+states/global.selectors';
-import {filter} from 'rxjs/operators';
-import {loadMonsters} from '../+states/global.actions';
+import {filter, tap} from 'rxjs/operators';
+import {loadMonsters, refreshMonsters} from '../+states/global.actions';
 import {Injectable} from '@angular/core';
 import {GlobalSandbox} from './global.sandbox';
 import {Monster} from '../models/monster.model';
 import {Observable} from 'rxjs';
+import {MonsterService} from '../services/monster.service';
 
 @Injectable({providedIn: 'root'})
 export class MonsterSandbox extends GlobalSandbox<Monster> {
@@ -25,4 +26,11 @@ export class MonsterSandbox extends GlobalSandbox<Monster> {
         })
     );
   }
+
+  add(value: Monster): Observable<Monster> {
+    return this.monsterService.add(value).pipe(
+      tap(() => this.refreshItems())
+    );
+  }
+
 }

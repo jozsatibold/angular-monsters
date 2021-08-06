@@ -6,7 +6,9 @@
       "weight": "22",
       "height": "0.7",
       "bodyIndex": 44.89795918367348,
-      "popularity": 2
+      "popularity": 2,
+      "xp": 0,
+      "affinity": -0.3
     },
     {
       "id": 13,
@@ -14,7 +16,9 @@
       "bodyIndex": 0,
       "height": 0,
       "popularity": 0,
-      "weight": 0
+      "weight": 0,
+      "xp": 0,
+      "affinity": 0.3
     },
     {
       "id": 14,
@@ -22,7 +26,9 @@
       "bodyIndex": 0,
       "height": 0,
       "popularity": 1,
-      "weight": 0
+      "weight": 0,
+      "xp": 0,
+      "affinity": -0.9
     },
     {
       "id": 16,
@@ -30,7 +36,9 @@
       "bodyIndex": 0,
       "height": 0,
       "popularity": 0,
-      "weight": 0
+      "weight": 0,
+      "xp": 0,
+      "affinity": 0
     },
     {
       "id": 17,
@@ -38,7 +46,9 @@
       "bodyIndex": 0,
       "height": 0,
       "popularity": 0,
-      "weight": 0
+      "weight": 0,
+      "xp": 0,
+      "affinity": 0.9
     },
     {
       "id": 18,
@@ -46,7 +56,9 @@
       "bodyIndex": 0,
       "height": 0,
       "popularity": 0,
-      "weight": 0
+      "weight": 0,
+      "xp": 0,
+      "affinity": -0.6
     },
     {
       "id": 19,
@@ -54,7 +66,9 @@
       "bodyIndex": 0,
       "height": 0,
       "popularity": 0,
-      "weight": 0
+      "weight": 0,
+      "xp": 0,
+      "affinity": -0.4
     },
     {
       "id": 20,
@@ -62,14 +76,18 @@
       "weight": "100",
       "height": "10",
       "bodyIndex": 1,
-      "popularity": 1
+      "popularity": 1,
+      "xp": 0,
+      "affinity": 0.4
     },
     {
       "name": "Pikacsú",
       "weight": "78",
       "height": "20",
       "popularity": 10,
-      "id": 21
+      "id": 21,
+      "xp": 0,
+      "affinity": 0.6
     },
     {
       "name": "Sanya",
@@ -77,7 +95,9 @@
       "height": "3",
       "bodyIndex": 4.444444444444445,
       "popularity": 0,
-      "id": 22
+      "id": 22,
+      "xp": 0,
+      "affinity": -0.3
     }
   ],
   "robots": [
@@ -87,7 +107,39 @@
       "weight": "58",
       "height": "176",
       "efficiency": "99",
-      "popularity": null
+      "popularity": 8,
+      "xp": 0,
+      "affinity": 0.6
+    },
+    {
+      "name": "Tibold",
+      "weight": "58",
+      "height": "176",
+      "efficiency": "99",
+      "popularity": 0,
+      "id": 2,
+      "xp": 0,
+      "affinity": -0.7
+    },
+    {
+      "name": "Misi",
+      "weight": "50",
+      "height": "48",
+      "efficiency": "85",
+      "popularity": 0,
+      "affinity": -0.9393493007154015,
+      "id": 3,
+      "xp": 0
+    },
+    {
+      "name": "Bármi",
+      "weight": "32",
+      "height": "22",
+      "efficiency": "10",
+      "popularity": 0,
+      "affinity": 0.8743812955485626,
+      "xp": 0,
+      "id": 4
     }
   ]
 }

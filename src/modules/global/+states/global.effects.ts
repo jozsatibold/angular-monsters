@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {RobotService} from '../services/robot.service';
 import {MonsterService} from '../services/monster.service';
-import {loadRobots, setMonsters, setRobots} from './global.actions';
+import {loadMonsters, loadRobots, refreshMonsters, refreshRobots, setMonsters, setRobots} from './global.actions';
 import {map, switchMap} from 'rxjs/operators';
 
 
@@ -14,17 +14,16 @@ export class GlobalEffects {
 
   LoadRobotsEffect = createEffect(() => this.actions$
     .pipe(
-      ofType('[Robots] Load'),
+      ofType(loadRobots.type),
       switchMap(() => this.robotService.getItems()),
       map(robots => setRobots({robots}))
     ));
 
   LoadMonstersEffect = createEffect(() => this.actions$
     .pipe(
-      ofType('[Monsters] Load'),
+      ofType(loadMonsters.type),
       switchMap(() => this.monsterService.getItems()),
       map(monsters => setMonsters({monsters}))
     ));
-
 }
 

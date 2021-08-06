@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { debounceTime, filter, map } from 'rxjs/operators';
-import { MonsterService } from 'src/modules/global/services/monster.service';
+import {MonsterSandbox} from '../../../global/sandboxes/monster.sandbox';
 
 @Component({
   selector: 'app-add-monster',
@@ -16,7 +16,7 @@ export class AddMonsterComponent implements OnInit {
     index$: Observable<{bodyIndex: number; weightStatus: string}>;
 
     constructor(
-        private monsterService: MonsterService,
+        private monsterSandbox: MonsterSandbox,
         private formBuilder: FormBuilder,
         private router: Router
     ){}
@@ -38,11 +38,11 @@ export class AddMonsterComponent implements OnInit {
                 const bodyIndex = value[0] / Math.pow(value[1], 2);
                 let weightStatus = '';
 
-                if(bodyIndex < 18.5){
+                if (bodyIndex < 18.5){
                     weightStatus = 'Piszkafa';
-                }else if(bodyIndex < 24.9){
+                }else if (bodyIndex < 24.9){
                     weightStatus = 'Normál';
-                }else if(bodyIndex < 30){
+                }else if (bodyIndex < 30){
                     weightStatus = 'Duckó';
                 }else{
                     weightStatus = 'Dagadék';
@@ -51,18 +51,15 @@ export class AddMonsterComponent implements OnInit {
                 return {bodyIndex, weightStatus};
             })
         );
-
     }
 
     saveMonster(){
-        if(this.form.valid){
+        if (this.form.valid){
             const formValue = this.form.value;
             const bodyIndex = formValue.weight / Math.pow(formValue.height, 2);
 
-            this.monsterService.add({ ...formValue, bodyIndex, popularity: 0 })
+            this.monsterSandbox.add({ ...formValue, bodyIndex, popularity: 0 })
                 .subscribe(() => this.router.navigate(['monster', 'list']) );
         }
-
     }
-
 }

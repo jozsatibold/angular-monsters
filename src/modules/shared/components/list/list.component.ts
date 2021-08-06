@@ -13,6 +13,7 @@ export class ListComponent implements OnInit {
   @Input() pageName: string;
   @Input() setNumber: string;
   @Input() globalSandbox: GlobalSandbox<BaseDetails>;
+  @Input() editable =  true;
   items$: Observable<BaseDetails[]>;
   refresh$ = new BehaviorSubject(null);
 

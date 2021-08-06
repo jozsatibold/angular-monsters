@@ -23,7 +23,7 @@ input {
   left: .1em;
 }
 
-.list a {
+.list a, .list div {
   color: #333;
   text-decoration: none;
   background-color: #EEE;
@@ -36,12 +36,12 @@ input {
   align-content: center;
 }
 
-.list a:hover {
+.list a:hover, .list div:hover {
   color: #2c3a41;
   background-color: #e6e6e6;
 }
 
-.list a:active {
+.list a:active, .list div:active {
   background-color: #525252;
   color: #fafafa;
 }

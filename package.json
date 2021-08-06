@@ -24,6 +24,7 @@
     "@angular/router": "~11.2.10",
     "@ngrx/effects": "^12.2.0",
     "@ngrx/store": "^12.2.0",
+    "@ngrx/store-devtools": "^12.3.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
     "angular-in-memory-web-api": "~0.11.0",

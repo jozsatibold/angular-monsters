@@ -1,8 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import {RobotService} from '../../../global/services/robot.service';
+import {RobotSandbox} from '../../../global/sandboxes/robot.sandbox';
 
 @Component({
   selector: 'app-add-robot',
@@ -14,7 +13,7 @@ export class AddRobotComponent implements OnInit {
     form: FormGroup;
 
     constructor(
-        private robotService: RobotService,
+        private robotSandbox: RobotSandbox,
         private formBuilder: FormBuilder,
         private router: Router
     ){}
@@ -30,13 +29,11 @@ export class AddRobotComponent implements OnInit {
     }
 
     saveRobot(){
-        if(this.form.valid){
+        if (this.form.valid){
             const formValue = this.form.value;
 
-            this.robotService.add({ ...formValue, popularity: 0 })
+            this.robotSandbox.add({ ...formValue, popularity: 0 })
                 .subscribe(() => this.router.navigate(['robot', 'list']) );
         }
-
     }
-
 }

@@ -59,7 +59,9 @@ export abstract class BaseService<t> {
 
   /** POST: add a new item to the server */
   add(item: any): Observable<t> {
-    return this.http.post<t>(this.baseUrl, item, this.httpOptions).pipe(
+    const affinity = (2 * Math.random()) - 1;
+
+    return this.http.post<t>(this.baseUrl, {...item, affinity, xp: 0}, this.httpOptions).pipe(
       tap((newitem: any) => this.log(`added item w/ id=${newitem.id}`)),
       catchError(this.handleError('add'))
     );

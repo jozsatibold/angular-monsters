@@ -25,4 +25,11 @@ export class RobotSandbox extends GlobalSandbox<Robot>{
         })
       );
   }
+
+  add(value: Robot): Observable<Robot> {
+    return this.robotService.add(value).pipe(
+      tap(() => this.refreshItems())
+    );
+  }
+
 }

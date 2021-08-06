@@ -1,6 +1,6 @@
 <h2>My {{ pageName | titlecase }}</h2>
 
-<div>
+<div *ngIf="editable">
   <button routerLink="/{{ pageName }}/add">
     Add {{ pageName }}
   </button>
@@ -8,10 +8,13 @@
 
 <ul class="list">
   <li *ngFor="let item of items$ | async">
-    <a routerLink="/{{ pageName }}/{{item.id}}">
+    <a *ngIf="editable" routerLink="/{{ pageName }}/{{item.id}}">
       <span class="badge"><img src="https://robohash.org/{{item.id}}?set=set{{ setNumber }}&size=30x30"></span> {{item.name}}
     </a>
-    <button class="delete" title="delete {{ pageName }}"
+    <div *ngIf="!editable">
+      <span class="badge"><img src="https://robohash.org/{{item.id}}?set=set{{ setNumber }}&size=30x30"></span> {{item.name}}
+    </div>
+    <button *ngIf="editable" class="delete" title="delete {{ pageName }}"
             (click)="delete(item)">x</button>
   </li>
 </ul>
