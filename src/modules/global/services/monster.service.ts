@@ -10,4 +10,8 @@ export class MonsterService extends BaseService<Monster> {
     private monsterHttp: HttpClient) {
       super(monsterHttp, '/monsters');
   }
+
+  convertObject(item): Monster {
+    return new Monster(item.bodyIndex, item.id, item.name, item.popularity, item.weight, item.height, item.affinity, item.xp);
+  }
 }

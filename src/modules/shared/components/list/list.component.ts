@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BaseDetails} from '../../../global/models/base.model';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
@@ -14,6 +14,8 @@ export class ListComponent implements OnInit {
   @Input() setNumber: string;
   @Input() globalSandbox: GlobalSandbox<BaseDetails>;
   @Input() editable =  true;
+  @Input() selectedItems: Array<number> = [];
+  @Output() clickedItem = new EventEmitter<BaseDetails>();
   items$: Observable<BaseDetails[]>;
 
   constructor() { }
@@ -28,5 +30,9 @@ export class ListComponent implements OnInit {
 
   delete(item: BaseDetails): void {
     this.globalSandbox.delete(item.id).subscribe();
+  }
+
+  clickedElement(item: BaseDetails) {
+    this.clickedItem.emit(item);
   }
 }

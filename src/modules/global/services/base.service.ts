@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, switchMap, tap } from 'rxjs/operators';
+import {catchError, map, switchMap, tap} from 'rxjs/operators';
+import {Monster} from '../models/monster.model';
 
 export abstract class BaseService<t> {
 
@@ -13,6 +14,8 @@ export abstract class BaseService<t> {
     private http: HttpClient,
     private baseUrl: string
   ) { }
+
+  abstract convertObject(item): t;
 
   /** GET items from the server */
   getItems(sort?: string, order?: 'asc' | 'desc', page?: number, limit?: number): Observable<t[]> {
@@ -27,6 +30,12 @@ export abstract class BaseService<t> {
       })
       .pipe(
         tap(_ => this.log('fetched rows')),
+        map(
+          items => items
+            .map(
+              item => this.convertObject(item)
+          )
+        ),
         catchError(this.handleError('getItems', []))
       );
   }
@@ -36,6 +45,7 @@ export abstract class BaseService<t> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.get<t>(url).pipe(
       switchMap((item: any) => this.updatePopularity(item.id, +item.popularity + 1)),
+      map(item => this.convertObject(item)),
       tap(_ => this.log(`fetched item id=${id}`)),
       catchError(this.handleError(`getItem id=${id}`))
     );
@@ -48,6 +58,12 @@ export abstract class BaseService<t> {
       return of([]);
     }
     return this.http.get<t[]>(`${this.baseUrl}?q=${term}`).pipe(
+      map(
+        items => items
+          .map(
+            item => this.convertObject(item)
+          )
+      ),
       tap(x => x.length ?
         this.log(`found items matching "${term}"`) :
         this.log(`no items matching "${term}"`)),
@@ -62,6 +78,7 @@ export abstract class BaseService<t> {
     const affinity = (2 * Math.random()) - 1;
 
     return this.http.post<t>(this.baseUrl, {...item, affinity, xp: 0}, this.httpOptions).pipe(
+      map(addItem => this.convertObject(addItem)),
       tap((newitem: any) => this.log(`added item w/ id=${newitem.id}`)),
       catchError(this.handleError('add'))
     );
@@ -72,6 +89,7 @@ export abstract class BaseService<t> {
     const url = `${this.baseUrl}/${id}`;
 
     return this.http.delete<t>(url, this.httpOptions).pipe(
+      map(item => this.convertObject(item)),
       tap(_ => this.log(`deleted item id=${id}`)),
       catchError(this.handleError('delete'))
     );

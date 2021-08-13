@@ -8,10 +8,15 @@
 
 <ul class="list">
   <li *ngFor="let item of items$ | async">
+
     <a *ngIf="editable" routerLink="/{{ pageName }}/{{item.id}}">
       <span class="badge"><img src="https://robohash.org/{{item.id}}?set=set{{ setNumber }}&size=30x30"></span> {{item.name}}
     </a>
-    <div *ngIf="!editable">
+
+    <div *ngIf="!editable"
+         (click)="clickedElement(item)"
+         [class.selected]="selectedItems.includes(item.id)"
+    >
       <span class="badge"><img src="https://robohash.org/{{item.id}}?set=set{{ setNumber }}&size=30x30"></span> {{item.name}}
     </div>
     <button *ngIf="editable" class="delete" title="delete {{ pageName }}"

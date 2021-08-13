@@ -88,3 +88,7 @@ button.delete:hover {
   background-color: #525252;
   color: white;
 }
+
+.selected {
+  background-color: #ec718d!important;
+}

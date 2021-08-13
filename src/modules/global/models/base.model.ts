@@ -9,6 +9,16 @@ export abstract class BaseDetails {
   affinity: number; // -1 water, 0 land, 1 air
   xp: number;
 
+  constructor(id: number, name: string, popularity: number, weight: number, height: number, affinity: number, xp: number) {
+    this.id = id;
+    this.name = name;
+    this.popularity = popularity;
+    this.weight = weight;
+    this.height = height;
+    this.affinity = affinity;
+    this.xp = xp;
+  }
+
   abstract getPower(): number;
 
   calculatePower(place: LocationsEnum): number {

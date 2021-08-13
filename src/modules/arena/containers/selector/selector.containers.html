@@ -4,14 +4,38 @@
     [globalSandbox]="monsterSandbox"
     setNumber="2"
     [editable]="false"
+    (clickedItem)="selectedItem($event)"
+    [selectedItems]="selectedMonsters"
   >
   </app-list>
+
+  <div class="location">
+    <div
+      (click)="selectLocation(locations.water)"
+      [class.selected]="selectedLocation === locations.water"
+    >Víz</div>
+    <div
+      (click)="selectLocation(locations.land)"
+      [class.selected]="selectedLocation === locations.land"
+    >Föld</div>
+    <div
+      (click)="selectLocation(locations.air)"
+      [class.selected]="selectedLocation === locations.air"
+    >Levegő</div>
+  </div>
 
   <app-list
     pageName="monster"
     [globalSandbox]="robotSandbox"
     setNumber="1"
     [editable]="false"
+    (clickedItem)="selectedItem($event)"
+    [selectedItems]="selectedRobots"
   >
   </app-list>
 </div>
+<button
+  *ngIf="selectedLocation && selectedItems.length === 2"
+  routerLink="war-zone"
+  [queryParams]="queryParams"
+>Menj csatázni!</button>
